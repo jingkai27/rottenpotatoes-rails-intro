@@ -38,6 +38,13 @@ class MoviesController < ApplicationController
     redirect_to movies_path
   end
 
+  def index
+    @all_ratings = Movie.all_ratings
+    @ratings_to_show = params[:ratings]&.keys ||@all_ratings
+    @movies = Movie.with_ratings(@ratings_to_show)
+    @ratings_to_show_hash = Hash[@ratings_to_show.collect{|item| [item,1]}]
+  end
+
   private
   # Making "internal" methods private is not required, but is a common practice.
   # This helps make clear which methods respond to requests, and which ones do not.

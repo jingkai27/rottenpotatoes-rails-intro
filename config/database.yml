@@ -22,4 +22,5 @@ test:
 
 production:
   <<: *default
+  host: <%= puts ENV['CLOUD_SQL_CONNECTION_NAME']; "/cloudsql/#{ENV['CLOUD_SQL_CONNECTION_NAME']}" %>
   database: db/production.sqlite3
