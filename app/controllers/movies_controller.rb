@@ -8,6 +8,22 @@ class MoviesController < ApplicationController
   def index
     @all_ratings = Movie.all_ratings
 
+    # case 1:if no params passed
+    # i use the session parameters
+    if params[:ratings].nil?&&params[:sort_by].nil?
+      if session[:ratings] || session[:sort_by]
+        flash.keep
+        redirect_to movies_path(ratings: session[:ratings], sort_by: session[:sort_by])
+        return
+      else
+        @ratings_to_show = @all_ratings
+      end
+    #case 2: if i did pass in parameters
+    else
+      session[:ratings] = params[:ratings]
+      session[:sort_by] = params[:sort_by]
+    end
+
     if params[:ratings].is_a?(Hash)
       @ratings_to_show = params[:ratings].keys
     elsif params[:ratings].is_a?(Array)
