@@ -6,6 +6,7 @@
 <%= form_tag movies_path, method: :get, id: 'ratings_form' do %>
   Include:
   <% @all_ratings.each do |rating| %>
+    <%= hidden_field_tag "sort_by", params[:sort_by] %>
     <div class="form-check  form-check-inline">
       <%= label_tag "ratings[#{rating}]", rating, class: 'form-check-label' %>
       <%= check_box_tag "ratings[#{rating}]", "1",  @ratings_to_show_hash.include?(rating), class: 'form-check-input' %>
@@ -18,9 +19,9 @@
 
   <thead>
     <tr>
-      <th>Movie Title</th>
+      <th><%=link_to 'Movie Title', movies_path(sort_by: 'title', ratings:@ratings_to_show), id:''%></th>
       <th>Rating</th>
-      <th>Release Date</th>
+      <th><%=link_to 'Release Date', movies_path(sort_by:'release_date', ratings:@ratings_to_show)%></th>
       <th>More Info</th>
     </tr>
   </thead>
