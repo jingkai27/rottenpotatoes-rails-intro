@@ -1,47 +1,24 @@
-<!--  This file is app/views/movies/index.html.erb -->
-<h2>All Movies</h2>
-
-<%#  Part 2: Start here... %>
-
-<%= form_tag movies_path, method: :get, id: 'ratings_form' do %>
-  Include:
-  <% @all_ratings.each do |rating| %>
-    <%= hidden_field_tag "sort_by", params[:sort_by] %>
-    <div class="form-check  form-check-inline">
-      <%= label_tag "ratings[#{rating}]", rating, class: 'form-check-label' %>
-      <%= check_box_tag "ratings[#{rating}]", "1",  @ratings_to_show_hash.include?(rating), class: 'form-check-input' %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Baymax</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="text-center">
+            <h1 class="display-4">Welcome to Baymax</h1>
+            <p class="lead">Monitor and manage your devices seamlessly.</p>
+            <div class="d-flex justify-content-center mt-4">
+                <a href="/user" class="btn btn-primary btn-lg mx-2">User Page</a>
+                <a href="/camera" class="btn btn-secondary btn-lg mx-2">Camera Page</a>
+            </div>
+        </div>
     </div>
-  <% end %>
-  <%= submit_tag 'Refresh', id: 'ratings_submit', class: 'btn btn-primary' %>
-<% end %>
-
-<table class="table table-striped col-md-12" id="movies">
-
-  <thead>
-    <tr>
-      <th class="<%=@title_header%>"><%=link_to 'Movie Title', movies_path(sort_by: 'title', ratings:@ratings_to_show), id:'title_header' %></th>
-      <th>Rating</th>
-      <th class="<%=@release_date_header%>"><%=link_to 'Release Date', movies_path(sort_by:'release_date', ratings:@ratings_to_show), id:'release_date_header' %></th>
-      <th>More Info</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @movies.each do |movie| %>
-      <tr>
-        <td>
-          <%= movie.title %>
-        </td>
-        <td>
-          <%= movie.rating %>
-        </td>
-        <td>
-          <%= movie.release_date %>
-        </td>
-        <td>
-          <%= link_to "More about #{movie.title}", movie_path(movie) %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<%= link_to 'Add new movie', new_movie_path, :class => 'btn btn-primary' %>
+    <script>
+        // You can add any JavaScript here if needed
+    </script>
+</body>
+</html>

@@ -15,7 +15,12 @@ Rails.application.routes.draw do
   #   resources :products
 
   resources :movies
-  
+
+  get 'camera', to: 'movies#camera'
+
+  get 'camera_broadcast', to: 'movies#camera_broadcast'
+
+  get 'user', to: 'movies#user'  
   # Example resource route with options:
   #   resources :products do
   #     member do
